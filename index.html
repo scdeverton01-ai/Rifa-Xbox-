@@ -112,7 +112,7 @@
 
             <!-- Grade Dinâmica de Números -->
             <div id="numbers-grid" class="grid grid-cols-5 sm:grid-cols-10 gap-3">
-                <!-- Gerado programaticamente via JavaScript -->
+                <!-- Gerado dinamicamente via JavaScript -->
             </div>
         </div>
 
@@ -237,14 +237,10 @@
         let selecionados = [];
         let modoEdicao = false;
 
-        // Renderização ao iniciar a página
-        window.onload = function() {
-            renderizarGrelha();
-        }
-
         // Criar dinamicamente os 100 números da grade
         function renderizarGrelha() {
             const grid = document.getElementById('numbers-grid');
+            if (!grid) return;
             grid.innerHTML = '';
 
             for (let i = 1; i <= 100; i++) {
@@ -347,4 +343,6 @@
         }
 
         // Controles do Painel Administrativo
-        function toggleAdm
+        function toggleAdminPanel() {
+            const panel = document.getElementById('admin-panel');
+            panel.c

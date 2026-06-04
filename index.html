@@ -3,175 +3,643 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Grande Rifa - Xbox One S 1TB</title>
-    <!-- Tailwind CSS para um design moderno, fluido e responsivo -->
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Cores inspiradas no ecossistema Xbox */
+        /* CSS EMBUTIDO COMPATÍVEL COM TODOS OS NAVEGADORES (MOBILE, INSTAGRAM, WHATSAPP, SAFARI, CHROME) */
         :root {
             --xbox-green: #107c10;
-            --xbox-green-hover: #189c18;
+            --xbox-green-hover: #159c15;
+            --xbox-green-glow: rgba(16, 124, 16, 0.35);
             --dark-bg: #0b0f19;
             --card-bg: #151f32;
+            --card-border: rgba(16, 124, 16, 0.2);
+            --text-light: #f3f4f6;
+            --text-muted: #94a3b8;
         }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         body {
             background-color: var(--dark-bg);
-            color: #f3f4f6;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: var(--text-light);
+            line-height: 1.5;
+            padding-bottom: 80px;
         }
-        .xbox-glow {
-            box-shadow: 0 0 25px rgba(16, 124, 16, 0.25);
+
+        /* Container Principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 16px;
         }
-        .xbox-glow-btn {
-            box-shadow: 0 4px 20px rgba(16, 124, 16, 0.45);
+
+        /* Banner de Cabeçalho */
+        header {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-bottom: 2px solid var(--card-border);
+            padding: 30px 16px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0 0 24px 24px;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(16, 124, 16, 0.15) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: rgba(16, 124, 16, 0.15);
+            color: #4ade80;
+            border: 1px solid rgba(16, 124, 16, 0.4);
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: 26px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+        h1 span {
+            color: var(--xbox-green);
+            text-shadow: 0 0 15px rgba(16, 124, 16, 0.4);
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 14px;
+            max-width: 600px;
+            margin: 0 auto 16px auto;
+        }
+
+        /* Grid de Informações Rápidas */
+        .info-cards {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .info-card {
+            background-color: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 10px 20px;
+            min-width: 120px;
+        }
+
+        .info-card .label {
+            font-size: 10px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .info-card .value {
+            font-size: 18px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-top: 2px;
+        }
+
+        .info-card .value.green {
+            color: #4ade80;
+        }
+
+        /* Layout em Duas Colunas */
+        .layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        @media (min-width: 1024px) {
+            .layout {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+
+        /* Painel da Grade de Números */
+        .grid-panel {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .panel-title h2 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .panel-title p {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        /* Legendas de Cores */
+        .legendas {
+            display: flex;
+            gap: 10px;
+            font-size: 11px;
+        }
+
+        .legenda-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--text-muted);
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        .dot.livre { background-color: #1e293b; border: 1px solid #475569; }
+        .dot.vendido { background-color: var(--xbox-green); }
+        .dot.selecionado { background-color: #2563eb; }
+
+        /* Grade de Números Responsiva - COMPACTADA */
+        .numbers-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr); /* 6 colunas em telas minúsculas */
+            gap: 8px;
+            justify-items: center;
+        }
+
+        @media (min-width: 400px) {
+            .numbers-grid {
+                grid-template-columns: repeat(8, 1fr); /* 8 colunas em celulares comuns */
+                gap: 8px;
+            }
+        }
+
+        @media (min-width: 640px) {
+            .numbers-grid {
+                grid-template-columns: repeat(10, 1fr); /* 10 colunas em telas maiores */
+                gap: 10px;
+            }
+        }
+
+        /* Estilo dos Botões de Números - REDUZIDOS */
+        .num-btn {
+            aspect-ratio: 1 / 1;
+            width: 100%;
+            max-width: 40px; /* Reduzido de 48px para 40px */
+            max-height: 40px;
+            border-radius: 50%;
+            font-size: 12px; /* Fonte reduzida de 14px para 12px */
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        /* Estados dos Botões */
+        .num-btn.livre {
+            background-color: #1e293b;
+            color: #cbd5e1;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .num-btn.livre:hover {
+            border-color: var(--xbox-green);
+            color: #ffffff;
+            background-color: #0f172a;
+            transform: scale(1.08);
+        }
+
+        .num-btn.vendido {
+            background-color: var(--xbox-green);
+            color: #0b0f19;
+            cursor: default;
+            font-weight: 900;
+            box-shadow: 0 0 8px rgba(16, 124, 16, 0.25);
+        }
+
+        .num-btn.selecionado {
+            background-color: #2563eb;
+            color: #ffffff;
+            box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+            border: 1px solid #3b82f6;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+            100% { transform: scale(1); }
+        }
+
+        /* Painel Lateral (Resumo e Ações) */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .card h3 {
+            font-size: 15px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Bloco do Carrinho */
+        .carrinho-box {
+            background-color: #090d16;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 14px;
+        }
+
+        .carrinho-label {
+            font-size: 10px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 700;
+        }
+
+        .carrinho-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin: 8px 0;
+            min-height: 24px;
+        }
+
+        .carrinho-empty {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .badge-numero {
+            background-color: rgba(37, 99, 235, 0.15);
+            color: #60a5fa;
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            font-size: 11px;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .badge-numero .remover {
+            cursor: pointer;
+            color: #ef4444;
+            font-weight: 900;
+            margin-left: 2px;
+        }
+
+        .carrinho-total {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .carrinho-total span {
+            font-size: 12px;
+            color: var(--text-light);
+        }
+
+        .carrinho-total .preco-final {
+            font-size: 20px;
+            font-weight: 900;
+            color: #4ade80;
+        }
+
+        /* Botão do WhatsApp principal */
+        .btn-acao {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 800;
+            border: none;
+            color: #ffffff;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .btn-acao.ativo {
+            background-color: var(--xbox-green);
+            box-shadow: var(--xbox-glow-btn);
+        }
+
+        .btn-acao.ativo:hover {
+            background-color: var(--xbox-green-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-acao.bloqueado {
+            background-color: #1e293b;
+            color: #475569;
+            cursor: not-allowed;
+            border: 1px solid #334155;
+        }
+
+        .btn-acao svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* Bloco do QR Code */
+        .qr-section {
+            text-align: center;
+        }
+
+        .qr-section p {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .qr-container {
+            background-color: #ffffff;
+            padding: 12px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+
+        .qr-mock {
+            width: 100px;
+            height: 100px;
+            background-color: #f1f5f9;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* Painel Admin Oculto */
+        .admin-section {
+            background-color: rgba(9, 13, 22, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .admin-toggle {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 10px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .admin-toggle:hover {
+            color: var(--text-light);
+        }
+
+        .admin-panel-content {
+            display: none;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 10px;
+        }
+
+        .btn-admin-action {
+            background-color: #1e293b;
+            color: #cbd5e1;
+            border: 1px solid #334155;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 700;
+            margin-top: 8px;
+            width: 100%;
+        }
+
+        .btn-admin-action.ativo {
+            background-color: #ef4444;
+            border-color: #f87171;
+            color: #ffffff;
+        }
+
+        /* Modal Customizado */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.85);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 100;
+        }
+
+        .modal-content {
+            background-color: #151f32;
+            border: 1px solid var(--xbox-green-border);
+            border-radius: 20px;
+            padding: 24px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .modal-icon {
+            font-size: 32px;
+            margin-bottom: 12px;
+        }
+
+        .modal-title {
+            font-size: 18px;
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .modal-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .modal-close {
+            background-color: var(--xbox-green);
+            border: none;
+            color: white;
+            font-weight: 800;
+            padding: 12px 24px;
+            border-radius: 10px;
+            width: 100%;
+            cursor: pointer;
         }
     </style>
 </head>
-<body class="min-h-screen pb-24">
+<body>
 
-    <!-- Cabeçalho / Banner Principal -->
-    <header class="relative overflow-hidden bg-slate-900 border-b border-emerald-500/20 py-10 px-4">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_top,_var(--tw-gradient-stops))] from-emerald-900/40 via-transparent to-transparent opacity-60"></div>
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+    <!-- Banner de Cabeçalho -->
+    <header>
+        <div class="header-content">
+            <span class="badge">🎮 Ação entre Amigos</span>
+            <h1>Rifa do <span>Xbox One S 1TB</span></h1>
+            <p>Garanta a sua chance de ganhar um console impecável, kit completo com controle original e cabo. Sorteio garantido!</p>
             
-            <!-- Informações do Prêmio -->
-            <div class="text-center md:text-left md:w-1/2">
-                <span class="inline-block bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 text-xs px-3 py-1.5 rounded-full font-semibold uppercase tracking-wider mb-4">
-                    🎮 Ação Especial entre Amigos
-                </span>
-                <h1 class="text-4xl md:text-5xl font-black text-white tracking-tight leading-tight uppercase">
-                    Grande Rifa do <br><span class="text-emerald-500">Xbox One S 1TB</span>
-                </h1>
-                <p class="mt-3 text-slate-300 text-base leading-relaxed">
-                    Console em excelente estado de conservação! Garanta já a sua chance de levar esse super kit para casa e jogar com o melhor desempenho.
-                </p>
-                
-                <div class="mt-6 flex flex-wrap items-center gap-4 justify-center md:justify-start">
-                    <div class="bg-slate-800/80 border border-slate-700 rounded-xl p-3 px-5 text-center min-w-[120px]">
-                        <p class="text-xs text-slate-400 uppercase">Preço por número</p>
-                        <p class="text-2xl font-bold text-emerald-400">R$ 14,00</p>
-                    </div>
-                    <div class="bg-slate-800/80 border border-slate-700 rounded-xl p-3 px-5 text-center min-w-[120px]">
-                        <p class="text-xs text-slate-400 uppercase">Total de Cotas</p>
-                        <p class="text-2xl font-bold text-white">100 Números</p>
-                    </div>
+            <div class="info-cards">
+                <div class="info-card">
+                    <div class="label">Preço da Cota</div>
+                    <div class="value green">R$ 14,00</div>
                 </div>
-            </div>
-
-            <!-- Demonstração Gráfica do Produto -->
-            <div class="md:w-1/2 flex justify-center">
-                <div class="relative bg-slate-800/40 p-6 rounded-2xl border border-slate-700/60 w-full max-w-sm xbox-glow">
-                    <div class="relative bg-slate-900 rounded-xl p-6 flex flex-col items-center">
-                        <svg class="w-36 h-36 text-slate-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                            <rect x="5" y="3" width="14" height="18" rx="2" stroke="currentColor" />
-                            <circle cx="12" cy="18" r="1.5" fill="currentColor" />
-                            <path d="M8 6h8M8 9h8" stroke-linecap="round" />
-                        </svg>
-                        <div class="absolute bottom-4 right-4 flex items-center justify-center bg-slate-800 rounded-full p-2.5 border border-slate-700">
-                            <!-- Ícone de Controle -->
-                            <svg class="w-8 h-8 text-emerald-500" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-3 11c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm6 0c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z" />
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="mt-4 text-center">
-                        <p class="text-sm font-bold text-white uppercase tracking-wider">Console Xbox One S + Controle Original</p>
-                        <p class="text-xs text-slate-400 mt-1">Kit Completo e Pronto para Jogar</p>
-                    </div>
+                <div class="info-card">
+                    <div class="label">Total de Cotas</div>
+                    <div class="value">100 Números</div>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Conteúdo Principal -->
-    <main class="max-w-6xl mx-auto px-4 mt-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
-        
-        <!-- Painel Esquerdo: Grade de Números Interativa com Carregamento Estático -->
-        <div class="lg:col-span-2 bg-slate-900/60 border border-slate-800 rounded-2xl p-6">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-800 pb-4 mb-6 gap-4">
-                <div>
-                    <h2 class="text-xl font-bold text-white flex items-center gap-2">
-                        <span>🎯</span> Escolha os seus Números
-                    </h2>
-                    <p class="text-xs text-slate-400 mt-1">Clique nos números livres que deseja reservar para a sua compra.</p>
+    <div class="container">
+        <div class="layout">
+            
+            <!-- Coluna Esquerda: Grade de Seleção -->
+            <div class="grid-panel">
+                <div class="panel-header">
+                    <div class="panel-title">
+                        <h2>🎯 Escolha os seus Números</h2>
+                        <p>Toque nos números livres para selecionar</p>
+                    </div>
+                    <div class="legendas">
+                        <div class="legenda-item"><span class="dot livre"></span> Livre</div>
+                        <div class="legenda-item"><span class="dot vendido"></span> Vendido</div>
+                        <div class="legenda-item"><span class="dot selecionado"></span> Selecionado</div>
+                    </div>
                 </div>
-                <!-- Legendas -->
-                <div class="flex gap-3 text-xs flex-wrap">
-                    <span class="flex items-center gap-1.5 text-slate-400">
-                        <span class="w-3.5 h-3.5 rounded-full bg-slate-800 border border-slate-700 block"></span> Livre
-                    </span>
-                    <span class="flex items-center gap-1.5 text-emerald-400 font-medium">
-                        <span class="w-3.5 h-3.5 rounded-full bg-emerald-500 block"></span> Vendido
-                    </span>
-                    <span class="flex items-center gap-1.5 text-blue-400 font-medium">
-                        <span class="w-3.5 h-3.5 rounded-full bg-blue-600 block"></span> Selecionado
-                    </span>
-                </div>
-            </div>
 
-            <!-- Grade Estática de 100 Números (Garantia Absoluta de Exibição) -->
-            <div id="numbers-grid" class="grid grid-cols-5 sm:grid-cols-10 gap-3">
-                <!-- Linha 1 -->
-                <button id="num-1" onclick="clicarNumero(1)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">1</button>
-                <button id="num-2" onclick="clicarNumero(2)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">2</button>
-                <button id="num-3" onclick="clicarNumero(3)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">3</button>
-                <button id="num-4" onclick="clicarNumero(4)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">4</button>
-                <button id="num-5" onclick="clicarNumero(5)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">5</button>
-                <button id="num-6" onclick="clicarNumero(6)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">6</button>
-                <button id="num-7" onclick="clicarNumero(7)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">7</button>
-                <button id="num-8" onclick="clicarNumero(8)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">8</button>
-                <button id="num-9" onclick="clicarNumero(9)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">9</button>
-                <button id="num-10" onclick="clicarNumero(10)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">10</button>
-                
-                <!-- Linha 2 -->
-                <button id="num-11" onclick="clicarNumero(11)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">11</button>
-                <button id="num-12" onclick="clicarNumero(12)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">12</button>
-                <button id="num-13" onclick="clicarNumero(13)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">13</button>
-                <button id="num-14" onclick="clicarNumero(14)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">14</button>
-                <button id="num-15" onclick="clicarNumero(15)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">15</button>
-                <button id="num-16" onclick="clicarNumero(16)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">16</button>
-                <button id="num-17" onclick="clicarNumero(17)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">17</button>
-                <button id="num-18" onclick="clicarNumero(18)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">18</button>
-                <button id="num-19" onclick="clicarNumero(19)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">19</button>
-                <button id="num-20" onclick="clicarNumero(20)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">20</button>
-                
-                <!-- Linha 3 -->
-                <button id="num-21" onclick="clicarNumero(21)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">21</button>
-                <button id="num-22" onclick="clicarNumero(22)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">22</button>
-                <button id="num-23" onclick="clicarNumero(23)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">23</button>
-                <button id="num-24" onclick="clicarNumero(24)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">24</button>
-                <button id="num-25" onclick="clicarNumero(25)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">25</button>
-                <button id="num-26" onclick="clicarNumero(26)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">26</button>
-                <button id="num-27" onclick="clicarNumero(27)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">27</button>
-                <button id="num-28" onclick="clicarNumero(28)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">28</button>
-                <button id="num-29" onclick="clicarNumero(29)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">29</button>
-                <button id="num-30" onclick="clicarNumero(30)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">30</button>
-                
-                <!-- Linha 4 -->
-                <button id="num-31" onclick="clicarNumero(31)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">31</button>
-                <button id="num-32" onclick="clicarNumero(32)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">32</button>
-                <button id="num-33" onclick="clicarNumero(33)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">33</button>
-                <button id="num-34" onclick="clicarNumero(34)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">34</button>
-                <button id="num-35" onclick="clicarNumero(35)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">35</button>
-                <button id="num-36" onclick="clicarNumero(36)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">36</button>
-                <button id="num-37" onclick="clicarNumero(37)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">37</button>
-                <button id="num-38" onclick="clicarNumero(38)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">38</button>
-                <button id="num-39" onclick="clicarNumero(39)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">39</button>
-                <button id="num-40" onclick="clicarNumero(40)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">40</button>
-                
-                <!-- Linha 5 -->
-                <button id="num-41" onclick="clicarNumero(41)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">41</button>
-                <button id="num-42" onclick="clicarNumero(42)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">42</button>
-                <button id="num-43" onclick="clicarNumero(43)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">43</button>
-                <button id="num-44" onclick="clicarNumero(44)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">44</button>
-                <button id="num-45" onclick="clicarNumero(45)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">45</button>
-                <button id="num-46" onclick="clicarNumero(46)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-emerald-500 text-slate-950 shadow-[0_0_10px_rgba(16,124,16,0.35)]">46</button>
-                <button id="num-47" onclick="clicarNumero(47)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">47</button>
-                <button id="num-48" onclick="clicarNumero(48)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">48</button>
-                <button id="num-49" onclick="clicarNumero(49)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">49</button>
-                <button id="num-50" onclick="clicarNumero(50)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">50</button>
-                
-                <!-- Linha 6 -->
-                <button id="num-51" onclick="clicarNumero(51)" class="aspect-square rounded-full flex items-center justify-center font-bold text-sm bg-slate-800 text-slate-300 border border-slate-700/60 hover:border-emerald-500 hover:text-emerald-400 transition-all">51</button>
-                <button id="num-52" onc
+                <!-- Grade Estática Completa de 1 a 100 (Isso previne qualquer bug de renderização em mobile) -->
+                <div class="numbers-grid" id="numbers-grid">
+                    <!-- Linha 1 -->
+                    <button id="num-1" class="num-btn livre">1</button>
+                    <button id="num-2" class="num-btn vendido">2</button>
+                    <button id="num-3" class="num-btn vendido">3</button>
+                    <button id="num-4" class="num-btn livre">4</button>
+                    <button id="num-5" class="num-btn livre">5</button>
+                    <button id="num-6" class="num-btn vendido">6</button>
+                    <button id="num-7" class="num-btn vendido">7</button>
+                    <button id="num-8" class="num-btn livre">8</button>
+                    <button id="num-9" class="num-btn vendido">9</button>
+                    <button id="num-10" class="num-btn vendido">10</button>
+                    
+                    <!-- Linha 2 -->
+                    <button id="num-11" class="num-btn livre">11</button>
+                    <button id="num-12" class="num-btn livre">12</button>
+                    <button id="num-13" class="num-btn vendido">13</button>
+                    <button id="num-14" class="num-btn livre">14</button>
+                    <button id="num-15" class="num-btn vendido">15</button>
+                    <button id="num-16" class="num-btn vendido">16</button>
+                    <button id="num-17" class="num-btn vendido">17</button>
+                    <button id="num-18" class="num-btn vendido">18</button>
+                    <button id="num-19" class="num-btn livre">19</button>
+                    <button id="num-20" class="num-btn vendido">20</button>
+                    
+                    <!-- Linha 3 -->
+                    <button id="num-21" class="num-btn vendido">21</button>
+                    <button id="num-22" class="num-btn vendido">22</button>
+                    <button id="num-23" class="num-btn livre">23</button>
+                    <button id="num-24" class="num-btn livre">24</button>
+                    <button id="num-25" class="num-btn vendido">25</button>
+                    <button id="num-26" class="num-btn vendido">26</button>
+                    <button id="num-27" class="num-btn vendido">27</button>
+                    <button id="num-28" class="num-btn vendido">28</button>
+                    <button id="num-29" class="num-btn livre">29</button>
+                    <button id="num-30" class="num-btn livre">30</button>
+                    
+                    <!-- Linha 4 -->
+                    <button id="num-31" class="num-btn vendido">31</button>
+                    <button id="num-32" class="num-btn livre">32</button>
+                    <button id="num-33" class="num-btn vendido">33</button>
+                    <button id="num-34" class="num-btn livre">34</button>
+                    <button id="num-35" class="num-btn vendido">35</button>
+                    <button id="num-36" class="num-btn livre">36</button>
+                    <button id="num-37" class="num-btn livre">37</button>
+                    <button id="num-38" class="num-btn livre">38</button>
+                    <button id="num-39" class="num-btn livre">39</button>
+                    <button id="num-40" class="num-btn livre">40</button>
+                    
+                    <!-- Linha 5 -->
+                    <button id="num-41" class="num-btn livre">41</button>
+                    <button id="num-42" class="num-btn livre">42</button>
+                    <button id="num-43" class="num-btn livre">43</button>
+                    <button id="num-44" class="num-btn vend
